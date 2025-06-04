@@ -703,20 +703,17 @@ function keyboardControlActions() {
     player.facingRight = true;
   }
   if (keyPress.space || keyPress.up) {
-   if (jumpCount < maxJumps) {
-     //this only lets you jump if you have not already jumped once in the air
+   if (player.onGround) {
+     //this only lets you jump if you are on the ground
      player.speedY = player.speedY - playerJumpStrength;
      jumpTimer = 19; //this counts how many frames to have the jump last.
      player.onGround = false; //bug fix for jump animation, you have to change this or the jump animation doesn't work
      frameIndex = 4;
-     let jumpCount = jumpCount + 1
    }
  }
 
-if (player.onGround) {
-let jumpCount = 0
-//this resets the amoumt of jumps you can do when you hit the ground
-}
+
+
 
 
 

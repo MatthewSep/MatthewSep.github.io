@@ -33,12 +33,23 @@ $(function () {
     // TODO 2 - Create Platforms
     createPlatform(500,700,200,40);
     createPlatform(700,625,200,20);
-    createPlatform(300,650,40,90);
-    createPlatform(150,550,75,20);
+    createPlatform(300,650,80,90);
+    createPlatform(150,550,100,20);
     createPlatform(1000,575,100,20);
     createPlatform(1200,500,200,20);
+    createPlatform(950,375,100,20);
+    createPlatform(1250,300,150,20)
+    createPlatform(1390,0,20,750)
+    // createPlatform(0,0,20,750)
+    createPlatform(650,330,175,20)
+    createPlatform(975,200,100,20)
+    createPlatform(650,300,100,40)
+    createPlatform(400,175,200,20)
     // TODO 3 - Create Collectables
-
+  createCollectable("coin", 175, 475,);
+  createCollectable("coin", 770, 250);
+  createCollectable("coin", 1300, 100);
+  createCollectable("coin", 400, 100)
 
 
     

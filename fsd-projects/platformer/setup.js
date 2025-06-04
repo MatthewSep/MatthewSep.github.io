@@ -5,7 +5,8 @@ const friction = 1.5; // how much the player is slowed each frame
 const maxSpeed = 8; // maximum horizontal speed, not vertical
 const playerJumpStrength = 12; // this is subtracted from the speedY each jump
 const projectileSpeed = 8; // the speed of projectiles
-const maxJumps = 2;
+// const maxJumps = 2;
+// var jumpCount = 0;
 let shouldDrawGrid = false;
 
 /////////////////////////////////////////////////
@@ -18,7 +19,7 @@ const playerScale = 0.8; //makes the player just a bit smaller. Doesn't affect t
 
 // Player variables
 const player = {
-  x: 100,
+  x: 25,
   y: 700,
   speedX: 0,
   speedY: 0,
@@ -98,5 +99,5 @@ var collectableList = {
   grace: { image: "images/collectables/grace-head.png" },
   kennedi: { image: "images/collectables/kennedi-head.png" },
   max: { image: "images/collectables/max-head.png" },
-  steve: { image: "images/collectables/steve-head.png" },
+  coin: { image: "images/collectables/gold_coin.png" },
 };
