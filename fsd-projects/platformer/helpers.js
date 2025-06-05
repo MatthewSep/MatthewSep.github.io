@@ -95,6 +95,7 @@ function changeAnimationType() {
   if (jumpTimer > 0 && !player.onGround) {
     currentAnimationType = animationTypes.jump;
     jumpTimer--;
+
   } else {
     jumpTimer = 0;
     if (Math.abs(player.speedX) > 0) {
@@ -310,6 +311,8 @@ function resolveCollision(objx, objy, objw, objh) {
       player.y = player.y - originy;
       player.speedY = 0;
       player.onGround = true;
+      jumpCount = 0
+      secondJump = false
     }
   } else {
     if (dx > 0) {
@@ -685,7 +688,9 @@ function createProjectile(wallLocation, x, y, width, height) {
   projectiles[projectiles.length - 1].y -=
     (height - defaultProjectileHeight) / 2;
 }
-
+   const maxJumps = 2;
+    var jumpCount = 0;
+    var secondJump = false
 function keyboardControlActions() {
   keyPress.any = false; //keyboardHandler will set this to true if you press any key. Setting the variable to false here makes sure that key press dosen't stick around.
   //this is used for respawning; if you hit any key after you die this variable will be set to true and you will respawn.
@@ -702,14 +707,31 @@ function keyboardControlActions() {
     player.speedX += walkAcceleration;
     player.facingRight = true;
   }
-  if (keyPress.space || keyPress.up) {
-   if (player.onGround) {
-     //this only lets you jump if you are on the ground
-     player.speedY = player.speedY - playerJumpStrength;
-     jumpTimer = 19; //this counts how many frames to have the jump last.
-     player.onGround = false; //bug fix for jump animation, you have to change this or the jump animation doesn't work
-     frameIndex = 4;
-   }
+
+   if (keyPress.space || keyPress.up) {
+  if (jumpCount < 1) {
+    //this only lets you jump if you are on the ground
+    player.speedY = player.speedY - playerJumpStrength;
+    jumpTimer = 19; //this counts how many frames to have the jump last.
+    player.onGround = false; //bug fix for jump animation, you have to change this or the jump animation doesn't work
+    frameIndex = 4;
+    jumpCount++
+    console.log(player.speedY)
+  }
+  else if (secondJump === true && jumpCount < maxJumps) {
+       console.log(player.speedY)
+       player.speedY = 0
+    player.speedY = player.speedY - playerJumpStrength;
+    jumpTimer = 19; //this counts how many frames to have the jump last.
+    player.onGround = false; //bug fix for jump animation, you have to change this or the jump animation doesn't work
+    frameIndex = 4;
+    jumpCount++
+    secondJump = false
+       console.log(player.speedY)
+  }
+}
+
+
  }
 
 
@@ -718,7 +740,7 @@ function keyboardControlActions() {
 
 
 
-}
+
 
 function handleKeyDown(e) {
   keyPress.any = true;
@@ -742,6 +764,7 @@ function handleKeyDown(e) {
 function handleKeyUp(e) {
   if (e.key === "ArrowUp" || e.key === "w") {
     keyPress.up = false;
+    secondJump = true
   }
   if (e.key === "ArrowLeft" || e.key === "a") {
     keyPress.left = false;
