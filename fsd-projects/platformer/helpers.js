@@ -33,6 +33,7 @@ function main() {
   projectileCollision(); //checks if the player is getting hit by a projectile in the next frame
   collectablesCollide(); //checks if player has touched a collectable
 
+
   animate(); //this changes halle's picture to the next frame so it looks animated.
   // debug()                   //debugging values. Comment this out when not debugging.
   drawRobot(); //this actually displays the image of the robot.
@@ -364,7 +365,39 @@ function projectileCollision() {
     }
   }
 }
-
+var collectableCount = 0
+function collectablesCollide() {
+collectableCount++
+console.log(collectableCount)
+}
+if (collectableCount = 5) {
+   ctx.fillStyle = "gray";
+  ctx.fillRect(
+    canvas.width / 4,
+    canvas.height / 6,
+    canvas.width / 2,
+    canvas.height / 2
+  );
+  ctx.fillStyle = "yellow";
+  ctx.font = "700% papyrus";
+  ctx.fillText(
+    " You are done",
+    canvas.width / 4,
+    canvas.height / 6 + canvas.height / 5,
+    (canvas.width / 16) * 14
+  );
+  ctx.font = "300% papyrus";
+  ctx.fillText(
+    "           you beat the game! good job. any key to restart",
+    canvas.width / 4,
+    canvas.height / 6 + canvas.height / 3,
+    (canvas.width / 16) * 14
+  );
+  if (keyPress.any) {
+    keyPress.any = false;
+    window.location.reload();
+  } 
+}
 function deathOfPlayer() {
   ctx.fillStyle = "grey";
   ctx.fillRect(
@@ -373,17 +406,17 @@ function deathOfPlayer() {
     canvas.width / 2,
     canvas.height / 2
   );
-  ctx.fillStyle = "black";
-  ctx.font = "800% serif";
+  ctx.fillStyle = "red";
+  ctx.font = "700% papyrus";
   ctx.fillText(
-    "You are dead",
+    " You are dead",
     canvas.width / 4,
     canvas.height / 6 + canvas.height / 5,
     (canvas.width / 16) * 14
   );
-  ctx.font = "500% serif";
+  ctx.font = "300% papyrus";
   ctx.fillText(
-    "Hit any key to restart",
+    "           Hit any key to restart",
     canvas.width / 4,
     canvas.height / 6 + canvas.height / 3,
     (canvas.width / 16) * 14
@@ -563,6 +596,8 @@ function collectablesCollide() {
   }
 }
 
+
+
 function createPlatform(x, y, width, height, color = "purple") {
   platforms.push({ x, y, width, height, color });
 }
@@ -641,7 +676,7 @@ function createCollectable(type, x, y, gravity = 0, bounce = 1) {
 
 function createProjectile(wallLocation, x, y, width, height) {
   //checking if the player is dead
-  if (currentAnimationType === animationTypes.frontDeath) {
+  if (currentAnimationType === animationTypes.front) {
     return;
   }
 
@@ -711,6 +746,7 @@ function keyboardControlActions() {
    if (keyPress.space || keyPress.up) {
   if (jumpCount < 1) {
     //this only lets you jump if you are on the ground
+    player.speedY = 0
     player.speedY = player.speedY - playerJumpStrength;
     jumpTimer = 19; //this counts how many frames to have the jump last.
     player.onGround = false; //bug fix for jump animation, you have to change this or the jump animation doesn't work
@@ -732,8 +768,7 @@ function keyboardControlActions() {
 }
 
 
- }
-
+}
 
 
 
