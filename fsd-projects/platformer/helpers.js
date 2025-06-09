@@ -368,38 +368,35 @@ function projectileCollision() {
     }
   }
 }
-function collectablesCollide() {
-collectableCount++
-console.log(collectableCount)
-}
-if (collectableCount = 5) {
-   ctx.fillStyle = "gray";
-  ctx.fillRect(
-    canvas.width / 4,
-    canvas.height / 6,
-    canvas.width / 2,
-    canvas.height / 2
-  );
-  ctx.fillStyle = "yellow";
-  ctx.font = "700% papyrus";
-  ctx.fillText(
-    " You are done",
-    canvas.width / 4,
-    canvas.height / 6 + canvas.height / 5,
-    (canvas.width / 16) * 14
-  );
-  ctx.font = "300% papyrus";
-  ctx.fillText(
-    "           you beat the game! good job. any key to restart",
-    canvas.width / 4,
-    canvas.height / 6 + canvas.height / 3,
-    (canvas.width / 16) * 14
-  );
-  if (keyPress.any) {
-    keyPress.any = false;
-    window.location.reload();
-  } 
-}
+
+//if (collectableCount >= 5) {
+//   ctx.fillStyle = "gray";
+//   ctx.fillRect(
+//     canvas.width / 4,
+//     canvas.height / 6,
+//     canvas.width / 2,
+//     canvas.height / 2
+//   );
+//   ctx.fillStyle = "yellow";
+//   ctx.font = "700% papyrus";
+//   ctx.fillText(
+//     " You are done",
+//     canvas.width / 4,
+//     canvas.height / 6 + canvas.height / 5,
+//     (canvas.width / 16) * 14
+//   );
+//   ctx.font = "300% papyrus";
+//   ctx.fillText(
+//     "           you beat the game! good job. any key to restart",
+//     canvas.width / 4,
+//     canvas.height / 6 + canvas.height / 3,
+//     (canvas.width / 16) * 14
+//   );
+//   if (keyPress.any) {
+//     keyPress.any = false;
+//     window.location.reload();
+//   } 
+// }
 function deathOfPlayer() {
   ctx.fillStyle = "grey";
   ctx.fillRect(
@@ -594,6 +591,8 @@ function collectablesCollide() {
       collectables[i].y + collectableHeight > player.y
     ) {
       collectables[i].collected = true;
+      collectableCount++
+      console.log("collectables = " + collectableCount)
     }
   }
 }
@@ -748,7 +747,7 @@ function keyboardControlActions() {
   if (jumpCount < 1) {
     //this only lets you jump if you are on the ground
     player.speedY = 0
-    player.speedY = player.speedY - playerstrength;
+    player.speedY = player.speedY - playerJumpStrength;
     jumpTimer = 19; //this counts how many frames to have the jump last.
     player.onGround = false; //bug fix for jump animation, you have to change this or the jump animation doesn't work
     frameIndex = 4;
