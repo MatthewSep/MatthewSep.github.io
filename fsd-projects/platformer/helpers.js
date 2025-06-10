@@ -556,12 +556,15 @@ function drawCollectables() {
 }
 
 function collectablesCollide() {
+
   for (var i = 0; i < collectables.length; i++) {
     if (
       collectables[i].x + collectableWidth > player.x &&
       collectables[i].x < player.x + hitBoxWidth &&
       collectables[i].y < player.y + hitBoxHeight &&
-      collectables[i].y + collectableHeight > player.y
+      collectables[i].y + collectableHeight > player.y &&
+      collectables[i].collected === false
+      
     ) {
       collectables[i].collected = true;
       collectableCount++
@@ -569,40 +572,40 @@ function collectablesCollide() {
     }
   }
 
-//   if (collectableCount >= 5) {
-//     ctx.fillStyle = "gray";
-//   ctx.fillRect(
-//     canvas.width / 4,
-//     canvas.height / 6,
-//     canvas.width / 2,
-//     canvas.height / 2
-//   );
-//   ctx.fillStyle = "yellow";
-//   ctx.font = "700% papyrus";
-//   ctx.fillText(
-//     " You are done",
-//     canvas.width / 4,
-//     canvas.height / 6 + canvas.height / 5,
-//     (canvas.width / 16) * 14
-//   );
-//   ctx.font = "300% papyrus";
-//   ctx.fillText(
-//     " you beat the game! good job.",
-//     canvas.width / 4,
-//     canvas.height / 6 + canvas.height / 3,
-//     (canvas.width / 16) * 14
-//   );
-//     ctx.font = "300% papyrus";
-//   ctx.fillText(
-//     " any key to restart",
-//     canvas.width / 4,
-//     canvas.height / 6 + canvas.height / 1.5,
-//     (canvas.width / 16) * 14 );
-//   if (keyPress.any) {
-//     keyPress.any = false;
-//     window.location.reload();
-//   } 
-// }
+  if (collectableCount >= 5) {
+    ctx.fillStyle = "gray";
+  ctx.fillRect(
+    canvas.width / 4,
+    canvas.height / 6,
+    canvas.width / 2,
+    canvas.height / 2
+  );
+  ctx.fillStyle = "yellow";
+  ctx.font = "700% papyrus";
+  ctx.fillText(
+    " You are done",
+    canvas.width / 4,
+    canvas.height / 6 + canvas.height / 5,
+    (canvas.width / 16) * 14
+  );
+  ctx.font = "300% papyrus";
+  ctx.fillText(
+    "  you beat the game! good job.",
+    canvas.width / 4,
+    canvas.height / 6 + canvas.height / 3,
+    (canvas.width / 16) * 14
+  );
+    ctx.font = "200% papyrus";
+  ctx.fillText(
+    "  die to restart",
+    canvas.width / 4,
+    canvas.height / 6 + canvas.height /2.25,
+    (canvas.width / 16) * 14 );
+  if (keyPress.any) {
+    keyPress.any = false;
+    window.location.reload();
+  } 
+}
 }
 
 
