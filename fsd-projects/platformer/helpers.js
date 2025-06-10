@@ -749,7 +749,8 @@ function keyboardControlActions() {
     player.facingRight = false;
   }
   if (keyPress.r) {
-    currentAnimationType = animationTypes.frontDeath;
+      currentAnimationType = animationTypes.frontDeath;
+      frameIndex = 0;
 }
   if (keyPress.right) {
     player.speedX += walkAcceleration;
