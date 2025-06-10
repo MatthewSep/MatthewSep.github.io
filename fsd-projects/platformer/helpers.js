@@ -571,8 +571,10 @@ function collectablesCollide() {
       console.log("collectables = " + collectableCount)
     }
   }
-
-  if (collectableCount >= 5) {
+if (collectableCount >= 5) {
+  winOfPlayer()
+}
+function winOfPlayer() {
     ctx.fillStyle = "gray";
   ctx.fillRect(
     canvas.width / 4,
@@ -597,14 +599,11 @@ function collectablesCollide() {
   );
     ctx.font = "200% papyrus";
   ctx.fillText(
-    "  die to restart",
+    "  r key to die",
     canvas.width / 4,
     canvas.height / 6 + canvas.height /2.25,
     (canvas.width / 16) * 14 );
-  if (keyPress.any) {
-    keyPress.any = false;
-    window.location.reload();
-  } 
+
 }
 }
 
@@ -749,6 +748,9 @@ function keyboardControlActions() {
     player.speedX -= walkAcceleration;
     player.facingRight = false;
   }
+  if (keyPress.r) {
+    currentAnimationType = animationTypes.frontDeath;
+}
   if (keyPress.right) {
     player.speedX += walkAcceleration;
     player.facingRight = true;
@@ -805,6 +807,9 @@ function handleKeyDown(e) {
   if (e.key === " ") {
     keyPress.space = true;
   }
+  if (e.key === "r") {
+    keyPress.r = true;
+  }
 }
 
 function handleKeyUp(e) {
@@ -827,6 +832,9 @@ function handleKeyUp(e) {
   }
   if (e.key === " ") {
     keyPress.space = false;
+  }
+    if (e.key === "r") {
+    keyPress.r = true;
   }
 }
 
