@@ -1,5 +1,6 @@
 body {
   margin: 40px;
+  background-color: rgb(60, 56, 56);
 }
 
 canvas {
@@ -9,4 +10,12 @@ canvas {
 
 img {
   display: none;
+}
+h2 {
+color: white
+
+}
+h1 {
+color: white
+
 }
