@@ -693,7 +693,7 @@ function createProjectile(wallLocation, x, y, width, height) {
 
   if (wallLocation === "top") {
     projectiles.push({
-      x: x - 66,
+      x: x - 69,
       y: y - 55 - height / 2,
       speedX: 0,
       speedY: projectileSpeed,
@@ -702,7 +702,7 @@ function createProjectile(wallLocation, x, y, width, height) {
     });
   } else if (wallLocation === "bottom") {
     projectiles.push({
-      x: x + 50,
+      x: x + 48,
       y: y + 50 + height / 2,
       speedX: 0,
       speedY: -projectileSpeed,
@@ -712,7 +712,7 @@ function createProjectile(wallLocation, x, y, width, height) {
   } else if (wallLocation === "left") {
     projectiles.push({
       x: x - 80 - width / 2,
-      y: y + 52,
+      y: y + 48,
       speedX: projectileSpeed,
       speedY: 0,
       width,
