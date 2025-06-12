@@ -757,7 +757,7 @@ function keyboardControlActions() {
     player.facingRight = true;
   }
 
-   if (keyPress.space || keyPress.up) {
+   if (keyPress.up) {
   if (jumpCount < 1) {
     //this only lets you jump if you are on the ground
     player.speedY = 0
