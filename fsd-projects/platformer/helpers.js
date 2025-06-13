@@ -598,14 +598,14 @@ function winOfPlayer() {
   );
   ctx.font = "300% cursive";
   ctx.fillText(
-    "  you beat the game! good job.",
+    "     you beat the game! good job.",
     canvas.width / 4,
     canvas.height / 6 + canvas.height / 3,
     (canvas.width / 16) * 14
   );
     ctx.font = "200% cursive";
   ctx.fillText(
-    "  reload the page if you want to play again!",
+    "       reload the page if you want to play again!",
     canvas.width / 4,
     canvas.height / 6 + canvas.height /2.25,
     (canvas.width / 16) * 14 );
