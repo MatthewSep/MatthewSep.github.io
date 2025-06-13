@@ -21,11 +21,11 @@
 		}
 
 		.board {
-			height: 100vh;
+			height: 90vh;
 			background-color: rgb(221, 166, 166);
 		h1 {
 			top: 1000px;
-			color: rgb(236, 236, 236);
+			color: rgb(255, 254, 254);
 			font: arial;
 		}
 
@@ -93,6 +93,8 @@
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
+						console.log(boardHeight)
+					console.log(boardWidth)
 			function update() {
 				positionx = positionx + xspeed;
 				positiony = yspeed + positiony;
@@ -109,12 +111,12 @@
 							else if (positiony <= 100) {
 				yspeed = yspeed * -1;
 			}
-			randNumx = Math.random() * 1000 + 100
-			randNumy = Math.random() * 300 +100
+			randNumx = Math.random() * 1550 + 100
+			randNumy = Math.random() * 650 +100
 			randDirectionx = Math.random() * 10
 			randDirectiony = Math.random() * 10
 			timer = timer + 0.05
-			console.log(timer)
+			// console.log(timer)
 			if (timer >= 7) {
 			console.log("pika pika")
 			clearInterval(interval);
@@ -163,7 +165,7 @@
 
 		})();
 	</script>
-	<h1>Click the box to make it go faster. If you don't click it within seven seconds of spawning, it will stop moving. Just do your best & have fun.</h1>
+	<h1>Click the box to make it go faster. If you don't click it within seven seconds of spawning, you'll lose. Just do your best & have fun.</h1>
 </body>
 
 </html>
