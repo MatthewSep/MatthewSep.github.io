@@ -6,6 +6,7 @@
 var collectableCount = 0;
 const maxJumps = 2;
 var jumpCount = 0;
+var endscreen = false
 function registerSetup(setup) {
   setupGame = setup;
 }
@@ -21,6 +22,7 @@ function main() {
     deathOfPlayer();
     return;
   }
+ 
 
   drawPlatforms();
   drawProjectiles();
@@ -260,7 +262,8 @@ function collision() {
       player.x + hitBoxWidth > platforms[i].x &&
       player.x < platforms[i].x + platforms[i].width &&
       player.y < platforms[i].y + platforms[i].height &&
-      player.y + hitBoxHeight > platforms[i].y
+      player.y + hitBoxHeight > platforms[i].y &&
+      endscreen === false
     ) {
       //now that we know we have collided, we figure out the direction of collision
       result = resolveCollision(
@@ -361,7 +364,8 @@ function projectileCollision() {
       projectiles[i].x < player.x + hitBoxWidth &&
       projectiles[i].x + projectiles[i].width > player.x &&
       projectiles[i].y < player.y + hitBoxHeight &&
-      projectiles[i].y + projectiles[i].height > player.y
+      projectiles[i].y + projectiles[i].height > player.y &&
+      endscreen === false
     ) {
       currentAnimationType = animationTypes.frontDeath;
       frameIndex = 0;
@@ -575,35 +579,37 @@ if (collectableCount >= 5) {
   winOfPlayer()
 }
 function winOfPlayer() {
-    ctx.fillStyle = "gray";
+  endscreen = true
+    ctx.clearRect(0, 0, 1400, 750)
+    ctx.fillStyle = "darkgray";
   ctx.fillRect(
     canvas.width / 4,
     canvas.height / 6,
     canvas.width / 2,
     canvas.height / 2
   );
-  ctx.fillStyle = "yellow";
-  ctx.font = "700% papyrus";
+  ctx.fillStyle = "skyblue";
+  ctx.font = "700% cursive";
   ctx.fillText(
     " You are done",
     canvas.width / 4,
     canvas.height / 6 + canvas.height / 5,
     (canvas.width / 16) * 14
   );
-  ctx.font = "300% papyrus";
+  ctx.font = "300% cursive";
   ctx.fillText(
     "  you beat the game! good job.",
     canvas.width / 4,
     canvas.height / 6 + canvas.height / 3,
     (canvas.width / 16) * 14
   );
-    ctx.font = "200% papyrus";
+    ctx.font = "200% cursive";
   ctx.fillText(
-    "  r key to die",
+    "  reload the page if you want to play again!",
     canvas.width / 4,
     canvas.height / 6 + canvas.height /2.25,
     (canvas.width / 16) * 14 );
-
+    
 }
 }
 
@@ -748,10 +754,7 @@ function keyboardControlActions() {
     player.speedX -= walkAcceleration;
     player.facingRight = false;
   }
-  if (keyPress.r) {
-      currentAnimationType = animationTypes.frontDeath;
-      frameIndex = 0;
-}
+
   if (keyPress.right) {
     player.speedX += walkAcceleration;
     player.facingRight = true;
