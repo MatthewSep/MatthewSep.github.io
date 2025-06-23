@@ -609,7 +609,6 @@ function winOfPlayer() {
     canvas.width / 4,
     canvas.height / 6 + canvas.height /2.25,
     (canvas.width / 16) * 14 );
-    
 }
 }
 
