@@ -93,11 +93,6 @@ var background = function (window) {
                 if (tree.x < -400) {
                 tree.x = canvasWidth;
             }
-            for (var i = 0; i < myArray.length; i++) {
-            var eachElement = myArray[i];
-
-  // code to do something with each element
-}
             // TODO 4: Part 2 - Parallax
             
 
