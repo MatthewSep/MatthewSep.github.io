@@ -7,6 +7,8 @@ var background = function (window) {
     var createjs = window.createjs;
     var tree
     var building
+    var hill
+    var trees = []
     /*
      * Create a background view for our game application
      */
@@ -41,9 +43,10 @@ var background = function (window) {
             // TODO 1:
             // this currently fills the background with an obnoxious yellow;
             // you should modify both the height and color to suit your game
-            var backgroundFill = draw.rect(canvasWidth * 2,canvasHeight * 2, "#3a3c40");
+            var BelowBackgroundFill = draw.rect(canvasWidth,canvasHeight, "black");
+            background.addChild(BelowBackgroundFill);
+            var backgroundFill = draw.rect(canvasWidth,canvasHeight / 2, "#3a3c40");
             background.addChild(backgroundFill);
-            
             // TODO 2: - Add a moon and starfield
             for (var i = 0; i < 100; i++) {
                 var circle = draw.circle(1, "white", "white", 1)
@@ -51,23 +54,13 @@ var background = function (window) {
             circle.y = groundY * Math.random()
             background.addChild(circle)
         }
-            var moon = draw.bitmap("img/moon.png")
+            var moon = draw.bitmap("img/bettermoon.webp")
             moon.x = 1000
             moon.y = 50
-            moon.scaleX = 0.3
-            moon.scaleY = 0.3
+            moon.scaleX = 0.6
+            moon.scaleY = 0.6
             background.addChild(moon)
             // TODO 4: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-            
-            
-            // TODO 3: Part 1 - Add a tree
-          for (var i = 0; i < 24; i++) {tree = draw.bitmap("img/tree.webp")
-            tree.x = i * 100 - Math.random() * 30
-            tree.y = groundY - 285 + Math.random() * 10
-            tree.scaleX = 0.3
-            tree.scaleY = 0.3
-            background.addChild(tree)
-          }
         //   for (var i = 0; i < 10; ++i) {
         //     var buildingHeight = Math.random()* 100 + 200;
         //     var building = draw.rect(75, buildingHeight, "LightGray", "Black", 1);
@@ -77,6 +70,33 @@ var background = function (window) {
         //     background.addChild(building);
         //     // buildings.push(building);
         // }
+        //   for (var i = 0; i < 6; i++) {
+        //     hill = draw. bitmap("img/hills.webp")
+        //     hill.x = i * 400
+        //     hill.y = groundY - 200
+        //     hill.scaleleX = 0.3
+        //     hill.scaleY = 0.3
+        //     background.addChild(hill)
+        //   }
+            // TODO 3: Part 1 - Add a tree
+                       for (var i = 0; i < 1; ++i) {
+            var buildingHeight = 70;
+            var building = draw.rect(1750, buildingHeight, "#10751b", "#10751b", 1);
+            building.x = 70 * i;
+            building.y = groundY - buildingHeight +20;
+            building.scaleX = 1.2
+            background.addChild(building);
+            // buildings.push(building); 
+               }
+          for (var i = 0; i < 22; i++) {
+            tree = draw.bitmap("img/tree.webp")
+            tree.x = i * 100 - Math.random() * 30
+            tree.y = groundY - 285 - Math.random() * 30
+            tree.scaleX = 0.3
+            tree.scaleY = 0.3
+            background.addChild(tree)
+            trees.push(tree)
+          }
         } // end of render function - DO NOT DELETE
         
         
@@ -89,12 +109,16 @@ var background = function (window) {
             var groundY = ground.y;
             
             // TODO 3: Part 2 - Move the tree!
-                tree.x = tree.x - 1;
-                if (tree.x < -400) {
-                tree.x = canvasWidth;
-            }
-            // TODO 4: Part 2 - Parallax
-            
+        for (var i = 0; i < trees.length; i++) {
+            var singleTree = trees[i]
+            singleTree.x = singleTree.x - 1
+        if (singleTree.x < -300) {
+        singleTree.x = canvasWidth
+        }
+    }
+        // TODO 4: Part 2 - Parallax
+
+
 
         } // end of update function - DO NOT DELETE
         

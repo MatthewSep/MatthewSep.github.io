@@ -21,7 +21,7 @@ var init = function (window) {
     playerManager,
     particleManager;
 
-  var debugHalleHitZones = false;
+  var debugHalleHitZones = true;
 
   space = app.space;
   (rules = app.rules),
@@ -34,11 +34,11 @@ var init = function (window) {
   var help = draw.textfield(
     "MOVES || up: jump | right: flying jump | down: duck | space: fire | q self destruct!",
     "20px Arial",
-    "#ccc",
+    "lightblue",
     "left"
   );
-  help.x = 10;
-  help.y = ground.y + ground.getBounds().height + 10;
+  help.x = 0;
+  help.y = ground.y + ground.getBounds().height + 20;
   view.addChild(help);
 
   window.opspark.makeSpriteSheet(data).then(function (ss) {
